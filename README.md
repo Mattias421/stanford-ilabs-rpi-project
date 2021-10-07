@@ -13,3 +13,5 @@ This will set up a 1 camera experiment with 1 variable called "my-first-experime
 
 # The end result
 On the host there will be a CSV explaining which variables apply to which photo. The experiment photos can be found on each pi located in the /home/pi/ilabs_photos directory
+
+![legoman_photo](/ilabs_photos/legoman/photo1_cam1.jpg)
