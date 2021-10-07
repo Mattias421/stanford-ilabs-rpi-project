@@ -72,7 +72,7 @@ while takingPhotos:
         photoName = 'photo'+str(rowNum)+'_cam'+str(i+1)+'.jpg'
 
         #take photo and save to pi
-        command = "python3 /home/pi/Stanford-iLabs-RPi-project/take_photo.py --photo_path " + args.experiment_name + ' --photo_name ' + photoName
+        command = "python3 /home/pi/stanford-ilabs-rpi-project/take_photo.py --photo_path " + args.experiment_name + ' --photo_name ' + photoName
         proc = subprocess.call(["ssh",pi,command],stdout=subprocess.PIPE) #remotly connect to pi and take photo
         row.append(photoName)
 
