@@ -4,7 +4,11 @@ Using Raspberry Pi cameras to create an iLab.
 # Installation
 Clone this repo onto the host and onto any pi cameras (make sure it is cloned in the /home/pi directory)
 
+You may need to add some python packages if you don't have them already (Anaconda is the recommended command line interface for this program because it is easy to install missing packages) 
+
 Currently pi IP addresses are manually entered in the main.py, this shall be automatic in the future
+
+Follow https://raspi.tv/2012/how-to-set-up-keys-and-disable-password-login-for-ssh-on-your-raspberry-pi for passwordless connection to Pi's!
 
 # Getting started
 An example command is: main.py --experiment_name "my-first-experiment" --num_variables 1 num_cameras 1
