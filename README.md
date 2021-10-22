@@ -24,8 +24,8 @@ What is the setting of variable 0?: *Enter your variable here e.g. LEGO man*
 
 *photos will be taken like so*
 
-What is the setting of variable 0?: Flower Pot
-Taking photos...
+What is the setting of variable 0?: Flower Pot \n
+Taking photos... \n
 photo5_cam1.jpg                                                                       100% 1196KB   1.3MB/s   00:00
 photo5_cam2.jpg                                                                       100% 1219KB   1.5MB/s   00:00
 Photos taken, press enter to continue or x to exit: x *Press x instead of enter to finish the experiment
