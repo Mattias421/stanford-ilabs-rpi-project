@@ -51,10 +51,10 @@ sshs = []
 
 with open('pi_ip.txt') as f:
     for ip in f:
-        ips.append(ip)
+        ips.append(ip.strip())
 with open('ssh_loc.txt') as f:
     for ssh in f:
-        sshs.append(ssh)
+        sshs.append(ssh.strip())
 
 #
 # TAKE PHOTOS
@@ -92,10 +92,10 @@ while takingPhotos:
         
         #send photo to host
         remote_path = ips[cam]+":ilabs_photos/" + args.experiment_name + "/" + photoName
-        
+
         host_path = os.path.join(experimentPath,"photos")
 
-        subprocess.run(["scp",remote_path,host_path])
+        subprocess.run(["scp","-i",sshs[cam],remote_path,host_path])
 
         row.append(photoName) #append photo to csv
 
@@ -112,11 +112,6 @@ print('Photoshoot complete!')
 albumDF = pd.DataFrame(album)
 
 albumDF.to_csv(os.path.join(experimentPath,args.experiment_name + '.csv'))
-
-
-
-
-
 
 
 
