@@ -29,7 +29,7 @@ parser.add_argument('--experiment_name', type=str, default='experiment_'+str(np.
 parser.add_argument('--num_variables', type=int, default=1,
                     help='Number of variables in the experiment')
 parser.add_argument('--num_cameras', type=int, default=1,
-                    help='Number of cameras used in the experiment')
+                    help='Number of cameras used in the experiment') #redundent do to ip file
 
 args = parser.parse_args()
 
@@ -43,12 +43,27 @@ os.makedirs(experimentPath)
 os.makedirs(photosPath)
 
 #
+# LOAD IP(S)
+#
+
+ips = []
+sshs = []
+
+with open('pi_ip.txt') as f:
+    for ip in f:
+        ips.append(ip)
+with open('ssh_loc.txt') as f:
+    for ssh in f:
+        sshs.append(ssh)
+
+#
 # TAKE PHOTOS
 #
 
+print()
 print('Welcome to iLabs Photostudio, let\'s get started with experiment '+args.experiment_name+'!')
 
-pi = "pi@" +"fe80::4f9f:c155:dff3:8386%16" #ipv6 address of pi
+
 
 album = []
 
@@ -68,13 +83,21 @@ while takingPhotos:
 
     print('Taking photos...')
 
-    for i in range(args.num_cameras):
-        photoName = 'photo'+str(rowNum)+'_cam'+str(i+1)+'.jpg'
+    for cam in range(len(ips)):
+        photoName = 'photo'+str(rowNum)+'_cam'+str(cam+1)+'.jpg'
 
         #take photo and save to pi
         command = "python3 /home/pi/stanford-ilabs-rpi-project/take_photo.py --photo_path " + args.experiment_name + ' --photo_name ' + photoName
-        proc = subprocess.call(["ssh",pi,command],stdout=subprocess.PIPE) #remotly connect to pi and take photo
-        row.append(photoName)
+        proc = subprocess.call(["ssh","-i",sshs[cam],ips[cam],command],stdout=subprocess.PIPE) #remotly connect to pi and take photo
+        
+        #send photo to host
+        remote_path = ips[cam]+":ilabs_photos/" + args.experiment_name + "/" + photoName
+        
+        host_path = os.path.join(experimentPath,"photos")
+
+        subprocess.run(["scp",remote_path,host_path])
+
+        row.append(photoName) #append photo to csv
 
         
 
@@ -89,6 +112,11 @@ print('Photoshoot complete!')
 albumDF = pd.DataFrame(album)
 
 albumDF.to_csv(os.path.join(experimentPath,args.experiment_name + '.csv'))
+
+
+
+
+
 
 
 
