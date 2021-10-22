@@ -18,4 +18,6 @@ This will set up a 1 camera experiment with 1 variable called "objects". (make s
 # The end result
 There will be a [CSV](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/experiments/objects/objects.csv) explaining which variables apply to which photo. The experiment photos can be found in the [photos folder](https://github.com/Mattias421/stanford-ilabs-rpi-project/tree/main/experiments/objects/photos) of each experiment. Photos are also saved to each Pi.
 
+Disclaimer: Using this project will not make you better at photography, it only helps with taking multiple photos of the same experiment state at the same time!
+
 ![legoman_photo](/experiments/objects/photos/photo1_cam2.jpg)
