@@ -8,7 +8,7 @@ You may need to add some python packages if you don't have them already (Anacond
 
 Currently pi IP addresses are manually entered in the main.py, this shall be automatic in the future
 
-Follow https://raspi.tv/2012/how-to-set-up-keys-and-disable-password-login-for-ssh-on-your-raspberry-pi for passwordless connection to Pi's!
+Follow https://www.raspberrypi.com/documentation/computers/remote-access.html AND https://raspi.tv/2012/how-to-set-up-keys-and-disable-password-login-for-ssh-on-your-raspberry-pi for passwordless connection to Pi's!
 
 # Getting started
 An example command is: main.py --experiment_name "my-first-experiment" --num_variables 1 num_cameras 1
