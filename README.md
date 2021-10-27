@@ -10,6 +10,8 @@ Find the [ip address](https://www.raspberrypistarterkits.com/how-to/find-raspber
 
 Generate and authorize [ssh keypairs](https://www.raspberrypi.com/documentation/computers/remote-access.html) and write the location of each private key location in [ssh_loc.txt](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/ssh_loc.txt). (WARNING: keys must match their corresponding Pi in pi_ip.txt). It is advised to set up [passwordless ssh](https://raspi.tv/2012/how-to-set-up-keys-and-disable-password-login-for-ssh-on-your-raspberry-pi) so that you don't have to enter passwords for each photo taken.
 
+For use on the University of Sheffield's network, the Pis must be [registered](https://csrs.shef.ac.uk/wirelessregister.php) and [configured](https://blog.sebastian-martens.de/development/raspberry-pi-hidden-ssid/).
+
 # Getting started
 An example command is: main.py --experiment_name "objects" --num_variables 1 
 
