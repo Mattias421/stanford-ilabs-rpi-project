@@ -28,8 +28,6 @@ parser.add_argument('--experiment_name', type=str, default='experiment_'+str(np.
                     help='Name of experiment, random if name not given')
 parser.add_argument('--num_variables', type=int, default=1,
                     help='Number of variables in the experiment')
-parser.add_argument('--num_cameras', type=int, default=1,
-                    help='Number of cameras used in the experiment') #redundent do to ip file
 
 args = parser.parse_args()
 
@@ -56,6 +54,8 @@ with open('ssh_loc.txt') as f:
     for ssh in f:
         sshs.append(ssh.strip())
 
+num_cameras = len(ips)
+
 #
 # TAKE PHOTOS
 #
@@ -69,7 +69,7 @@ album = []
 
 takingPhotos = True
 
-rowLength = args.num_variables + args.num_cameras
+rowLength = args.num_variables + num_cameras
 
 rowNum = 0
 
@@ -83,7 +83,7 @@ while takingPhotos:
 
     print('Taking photos...')
 
-    for cam in range(len(ips)):
+    for cam in range(num_cameras):
         photoName = 'photo'+str(rowNum)+'_cam'+str(cam+1)+'.jpg'
 
         #take photo and save to pi
@@ -106,6 +106,11 @@ while takingPhotos:
     end = input('Photos taken, press enter to continue or x to exit: ')
     if end == 'x':
         takingPhotos = False
+
+#delete all photos from pi
+for cam in range(num_cameras):
+    command = "rm -r /home/pi/ilabs_photos"
+    proc = subprocess.call(["ssh","-i",sshs[cam],ips[cam],command],stdout=subprocess.PIPE)
 
 print('Photoshoot complete!')
 
