@@ -49,9 +49,10 @@ print("Preparing camera for", args.photo_name)
 
 camera = PiCamera()
 
-camera.start_preview()
-time.sleep(5)
-camera.stop_preview()
+#uncomment for camera preview
+#camera.start_preview()
+#time.sleep(5)
+#camera.stop_preview()
 
 #take photo and save to photosPath
 photo = os.path.join(photosPath,args.photo_name)
