@@ -13,7 +13,7 @@ Generate and authorize [ssh keypairs](https://www.raspberrypi.com/documentation/
 For use on the University of Sheffield's network, the Pis must be [registered](https://csrs.shef.ac.uk/wirelessregister.php) and [configured](https://blog.sebastian-martens.de/development/raspberry-pi-hidden-ssid/).
 
 # Getting started
-An example command is: main.py --experiment_name "objects" --num_variables 1 
+An example command is: main.py --experiment_name "objects" --num_variables 1 (add "--setup True" to activate the camera setup process)
 
 This will set up a 1 camera experiment with 1 variable called "objects". (make sure not to use and resticted characters or spaces)
 
