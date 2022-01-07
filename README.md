@@ -28,4 +28,4 @@ There will be a [CSV](https://github.com/Mattias421/stanford-ilabs-rpi-project/b
 
 Disclaimer: Using this project will not make you better at photography, it only helps with taking multiple photos of the same experiment state at the same time!
 
-![legoman_photo](/experiments/objects/photos/photo1_cam2.jpg)
+![legoman_photo](/experiments/objects/photos/photo1_cam1.jpg)
