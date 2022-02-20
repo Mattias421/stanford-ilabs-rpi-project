@@ -25,9 +25,11 @@ import subprocess
 
 parser = argparse.ArgumentParser(description='Settings for iLabs Photostudio')
 parser.add_argument('--experiment_name', type=str, default='experiment_'+str(np.random.randint(0, 1000000)),
-                    help='Name of experiment, random if name not given')
+                    help='Name of experiment, random if name not given. Should not contain spaces nor be duplicate')
 parser.add_argument('--num_variables', type=int, default=1,
                     help='Number of variables in the experiment')
+parser.add_argument('--setup',type=bool,default=False,
+                    help='State whether camera setup is needed or not')
 
 args = parser.parse_args()
 
@@ -35,10 +37,21 @@ args = parser.parse_args()
 # CREATE EXPERIMENT FOLDERS
 #
 
-experimentPath = os.path.join('experiments', args.experiment_name) #should not contain spaces nor be duplicate
-photosPath = os.path.join(experimentPath, 'photos')
-os.makedirs(experimentPath)
-os.makedirs(photosPath)
+
+
+
+try:
+    experimentPath = os.path.join('experiments', args.experiment_name) 
+    photosPath = os.path.join(experimentPath, 'photos')
+    os.makedirs(experimentPath)
+    os.makedirs(photosPath)
+except:
+    new_name = args.experiment_name + '_' + str(np.random.randint(0, 1000000))
+    print('Experiment already exists, renaming experiment folder to :',new_name)
+    experimentPath = os.path.join('experiments', new_name) 
+    photosPath = os.path.join(experimentPath, 'photos')
+    os.makedirs(experimentPath)
+    os.makedirs(photosPath)
 
 #
 # LOAD IP(S)
@@ -57,14 +70,49 @@ with open('ssh_loc.txt') as f:
 num_cameras = len(ips)
 
 #
-# TAKE PHOTOS
+# SETUP CAMERAS
 #
 
 print()
 print('Welcome to iLabs Photostudio, let\'s get started with experiment '+args.experiment_name+'!')
+print()
 
+setup = args.setup
 
+if setup:
+    setup_path = os.path.join('setup')
 
+    try:
+        os.makedirs(setup_path)
+    except:
+        print()
+
+while setup:
+    print('First we must make sure the cameras are set up, have a look at the camera_setup folder')
+    for cam in range(num_cameras):
+        print('Testing camera: '+str(cam+1))
+
+        photoName = 'camera_test_'+str(cam+1)+'.jpg'
+
+        #take photo and save to pi
+        command = 'python3 /home/pi/stanford-ilabs-rpi-project/take_photo.py --photo_path setup --photo_name ' + photoName
+        proc = subprocess.call(["ssh","-i",sshs[cam],ips[cam],command],stdout=subprocess.PIPE) #remotly connect to pi and take photo
+        
+        #send photo to host
+        remote_path = ips[cam]+":ilabs_photos/setup/" + photoName
+
+        host_path = setup_path
+
+        subprocess.run(["scp","-i",sshs[cam],remote_path,host_path])
+
+    if input("Are the cameras set up?(y): ") == 'y':
+        setup = False
+
+        print("Perfect, let the experiment begin!")
+
+#
+# TAKE PHOTOS
+#
 album = []
 
 takingPhotos = True
@@ -78,13 +126,19 @@ while takingPhotos:
     row = []
     rowNum += 1
 
+    variables_string = ''
+
     for i in range(args.num_variables):
-        row.append(input('What is the setting of variable ' + str(i) + '?: '))
+        value = input('What is the value of variable ' + str(i) + '?: ')
+        row.append(value)
+
+        #to add to photo name
+        variables_string += '_v'+str(i)+'='+value
 
     print('Taking photos...')
 
     for cam in range(num_cameras):
-        photoName = 'photo'+str(rowNum)+'_cam'+str(cam+1)+'.jpg'
+        photoName = 'photo'+str(rowNum)+'_cam'+str(cam+1)+variables_string+'.jpg'
 
         #take photo and save to pi
         command = "python3 /home/pi/stanford-ilabs-rpi-project/take_photo.py --photo_path " + args.experiment_name + ' --photo_name ' + photoName
@@ -98,8 +152,6 @@ while takingPhotos:
         subprocess.run(["scp","-i",sshs[cam],remote_path,host_path])
 
         row.append(photoName) #append photo to csv
-
-        
 
     album.append(row)
 
