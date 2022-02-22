@@ -53,6 +53,8 @@ Enter `5 Interfacing Options` and enable the camera (`P1 Camera`) and SSH (`P2 S
 
 Configuring the server is easy. Enter the IP address of each Pi on each line of the [pi_ip.txt](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/pi_ip.txt) file and its matching private ssh key file location in [ssh_loc.txt](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/ssh_loc.txt).
 
+---
+
 # My first experiment
 
 You're first command should look like this: 
