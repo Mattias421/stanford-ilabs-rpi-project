@@ -83,7 +83,7 @@ Repeat as desired, press `x` when prompted to exit the program.
 
 There will be a [CSV](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/experiments/objects/objects.csv) explaining which variables apply to which photo. The experiment photos can be found in the [photos folder](https://github.com/Mattias421/stanford-ilabs-rpi-project/tree/main/experiments/objects/photos) of each experiment. These can be viewed in the moba file explorer.
 
-This CSV and photos folder can now be sent to stanford to 
+This CSV and photos folder can now be sent to Stanford.
 
 Disclaimer: Using this project will not make you better at photography, it only helps with taking multiple photos of the same experiment state at the same time!
 
