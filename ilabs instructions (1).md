@@ -9,13 +9,13 @@ Originating from the 1990s, Stanford University implemented remote laboratory's 
 The hardware required to set up RPi iLabs at the University of Sheffield is:
 
 > The iLabs kit \
-> 3 power outlets
-> 3 ethernet ports
+> 3 power outlets \
+> 3 ethernet ports \
 > A computer/laptop connected to the eduroam network
 
 The software required is:
 
-> VLC media player
+> VLC media player \
 > Moba xterm
 
 ## Connect to server
