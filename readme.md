@@ -34,7 +34,7 @@ When prompted for a password, enter the password given to you with the iLabs kit
 
 ## Raspberry Pi preperation
 
-![ilabs_schema](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/experiments/objects/photos/ilabs_schema.drawio.png?raw=true)
+![ilabs_schema](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/experiments/objects/photos/ilabs_schema.jpg?raw=true)
 
 A few steps are required to set up a Pi for iLabs. There are 3 Pis in the iLabs kit: *horsea*, *lapras* and *vaporeon*, each have a unique SSH key. 
 
