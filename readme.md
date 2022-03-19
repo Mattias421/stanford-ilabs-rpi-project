@@ -1,6 +1,8 @@
 # Stanford iLabs RPi Project
 Originating from the 1990s, Stanford University implemented remote laboratory's "[iLabs](http://ilabs.education)". This repository provides an open source framework using readily available Raspberry Pi technology to introduce iLabs to any labaratory. 
 
+![ilabs_icon](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/experiments/objects/photos/rpi_pokemon.jpg?raw=true)
+
 ---
 
 # Set up
@@ -31,6 +33,8 @@ ssh ilabs@squirtle.shef.ac.uk
 When prompted for a password, enter the password given to you with the iLabs kit.
 
 ## Raspberry Pi preperation
+
+![ilabs_schema](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/experiments/objects/photos/ilabs_schema.drawio.jpg?raw=true)
 
 A few steps are required to set up a Pi for iLabs. There are 3 Pis in the iLabs kit: *horsea*, *lapras* and *vaporeon*, each have a unique SSH key. 
 
