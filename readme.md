@@ -81,10 +81,17 @@ In the terminal, press `ctrl+c` then type `exit` to return to *squirtle*. Now re
 In the MobaXterminal, use `cd stanford-ilabs-rpi-project` to change into the ilabs directory. Your first command should look like this: 
 
 ```
-python3 main.py --experiment_name $EXPERIMENT_NAME --num_variables $NUM_VARIABLES
+python3 main.py --experiment_name $EXPERIMENT_NAME --variables $VARIABLES
 ```
 
-Replace `$EXPERIMENT_NAME` with the name of your experiment, and $NUM_VARIABLES is the number variables in the experiement. For example, in the *Beams lab*, the number of variables is one (the beam). Refrain from using spaces in the experiment name and variables.
+Replace `$EXPERIMENT_NAME` with the name of your experiment, and $VARIABLES with the name of each variable in the experiement. Refrain from using spaces in the experiment and variable names.
+
+Here is an example command:
+
+```
+python3 main.py --experiment_name hydro --variables mass height
+```
+
 ## Experiment
 
 It is time to begin capturing the experiment. Set your lab equipment to it's desired state. You will be prompted to enter the value of each experiment variable and then the images will be captured. 
