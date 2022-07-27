@@ -14,12 +14,12 @@ The hardware required to set up RPi iLabs at the University of Sheffield is:
 > 3 power outlets (and cables of suitable length)
 > 3 ethernet ports (and cables of suitable length)
 > A computer/laptop connected to the eduroam network
+> Keyboard, mouse, HDMI monitor
 
 Please consider the available power sockets and ethernets in your given lab, before getting started with the setup.
 
 The software required is available on university computers via the software centre:
 
-> VLC media player
 > Moba xterm
 
 ## Connect to server
@@ -36,45 +36,21 @@ When prompted for a password, enter the password given to you with the iLabs kit
 
 ![ilabs_schema](https://github.com/Mattias421/stanford-ilabs-rpi-project/blob/main/experiments/objects/photos/ilabs_schema.jpg?raw=true)
 
-A few steps are required to set up a Pi for iLabs. There are 3 Pis in the iLabs kit: *horsea*, *lapras* and *vaporeon*, each have a unique SSH key. 
+A few steps are required to set up a Pi for iLabs. There are 3 Pis in the iLabs kit: *horsea*, *lapras* and *vaporeon*. 
 
 ### 1. Turn on Pi
 Turning the Pi on is simple:
-* Plug the ethernet cable into the Pi ethernet port.
+* Plug the ethernet, keyboard, mouse and HDMI cable into the Pi ethernet port.
 * Then plug the power in. 
 
- The Pi should start flashing. During setup, turning the power on is the last thing you should do, follow this procedure.
+ The Pi should start flashing. During setup, turning the power on is the last thing you should do, follow this procedure. 
 
-### 2. SSH into Pi
+### 2. Video stream
+Viewing the monitor, use the keyboard and mouse to open a terminal and type `./video`. Camera feedback should now be visable, use this to focus your lenses. 
 
-In the moba xterminal (which should now be connected to *squirtle*), type:
+Once satisfied, press ctrl+c.
 
-```
-ssh -i /home/ilabs/.ssh/$SSH_KEY -X pi@$PI_NAME
-```
-
-Replace `$SSH_KEY` and `$PI_NAME` with the Pi you would like to set up.
-
-| Pi Name | SSH Key |
-|------|-----|
-| horsea | id_rsa_pi_1 |
-| lapras | id_rsa_pi_2 |
-| vaporeon | id_rsa_pi_3 |
-
-### 3. Video stream
-
-Now enter the following command (you can click the copy button on the right end of the command):
-
-```
-raspivid -o - -t 0 -w 800 -h 600 -fps 1 | cvlc -vvv stream:///dev/stdin --sout '#rtp{sdp=rtsp://:8080/}' :demux=h264
-```
-
-The terminal should now display lots of text, this means the Pi has started streaming.
-
-Open VLC media player and press `crtl+n`, then enter `rtsp://$PI_NAME:8080/`. You should now be able to see a video stream of the Pi. Adjust the camera as desired.
-
-In the terminal, press `ctrl+c` then type `exit` to return to *squirtle*. Now return to step 1 and repeat for the other Pis.
-
+Repeat these steps for each Pi.
 
 # My first experiment
 
