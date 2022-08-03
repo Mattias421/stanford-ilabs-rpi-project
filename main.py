@@ -19,6 +19,7 @@ import numpy as np
 import pandas as pd
 import time
 import subprocess
+import re
 
 #
 # PARSE ARGUEMENTS 
@@ -37,12 +38,12 @@ args = parser.parse_args()
 #
 
 try:
-    experimentPath = os.path.join('experiments', args.experiment_name) 
+    experimentPath = os.path.join('experiments', args.experiment_name.replace(' ', '_')) 
     photosPath = os.path.join(experimentPath, 'photos')
     os.makedirs(experimentPath)
     os.makedirs(photosPath)
 except:
-    new_name = args.experiment_name + '_' + str(np.random.randint(0, 1000000))
+    new_name = args.experiment_name.replace(' ', '_') + '_' + str(np.random.randint(0, 1000000))
     print('Experiment already exists, renaming experiment folder to :',new_name)
     experimentPath = os.path.join('experiments', new_name) 
     photosPath = os.path.join(experimentPath, 'photos')
@@ -78,7 +79,7 @@ print()
 #
 
 variables = args.variables
-album = [variables + ['camera ' + str(i) for i in range(num_cameras)]]
+album = [variables + ['photo ' + str(i) for i in range(num_cameras)]]
 
 num_variables = len(variables)
 
@@ -97,6 +98,9 @@ while takingPhotos:
 
     for i in range(num_variables):
         value = input('What is the value of variable ' + variables[i] + '?: ')
+
+        # parse input
+        value = re.sub('[^a-zA-Z0-9 :\.]', '', value)
         row.append(value)
 
         #to add to photo name
